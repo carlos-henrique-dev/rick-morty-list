@@ -1,5 +1,7 @@
 # Rick and Morty List
 
+[See it online](https://rick-morty-list.vercel.app/)
+
 ## Stack
 
 - Next.js 13;
