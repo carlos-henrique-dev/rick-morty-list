@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react'
-import { ICharacter } from '@/interfaces'
 
 import { HomeViewModel } from '../interfaces'
 
 export default function useHomeViewModel(params: HomeViewModel.IProps): HomeViewModel.IReturn {
-  const { domain } = params
+  const { domain, characterStore } = params
 
-  const [characters, setCharacters] = useState<ICharacter[]>([])
+  const [loading, setLoading] = useState(true)
+  const { characters, setCharacters } = characterStore
 
   const getCharacters = async () => {
     const characters = await domain.getCharacters()
+
     setCharacters(characters)
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -18,7 +20,10 @@ export default function useHomeViewModel(params: HomeViewModel.IProps): HomeView
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const firstThreeCharacters = characters.slice(0, 3)
+
   return {
-    characters,
+    characters: firstThreeCharacters,
+    loading,
   }
 }

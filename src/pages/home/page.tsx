@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import { HomeViewModel } from '@/modules/home'
 
-import { CharacterCard, Container, Grid, Text, Title } from '@/components'
+import { CharacterCard, Container, Grid, Loading, Text, Title } from '@/components'
 
 export default function HomePage(viewModel: HomeViewModel.IReturn) {
-  const { characters = [] } = viewModel
+  const { characters = [], loading } = viewModel
 
   return (
     <main>
@@ -17,6 +17,8 @@ export default function HomePage(viewModel: HomeViewModel.IReturn) {
           <Title className="text-center">Rick and Morty</Title>
           <Text className="font-bold">Character List</Text>
         </Container>
+
+        <Loading active={loading} />
 
         <Grid>
           {characters.map((character) => (

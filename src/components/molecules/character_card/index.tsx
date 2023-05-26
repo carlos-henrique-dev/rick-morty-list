@@ -12,7 +12,7 @@ export function CharacterCard({ character }: Props) {
   const badgeColor = status === 'Alive' ? 'bg-green-500' : 'bg-red-500'
 
   return (
-    <Card className="bg-dark-gray-500 hover:scale-105 transition-all duration-300 cursor-pointer">
+    <Card darkBg>
       <Row>
         <Image src={image} alt={name} width={150} height={150} />
 
