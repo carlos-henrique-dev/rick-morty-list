@@ -10,7 +10,7 @@ export default class HomeDomain implements Domain.IHomeDomain {
   }
 
   getCharacters = async () => {
-    const characters = await this.charactersService.getCharacters()
+    const { results: characters } = await this.charactersService.getCharacters({ page: 1 })
     return characters
   }
 }

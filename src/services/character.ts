@@ -11,13 +11,16 @@ export class CharacterService implements ICharacterService {
     this.baseUrl = baseUrl
   }
 
-  getCharacters = async (): Promise<ICharacter[]> => {
-    const { results } = await this.httpClient.get<ICharacter[]>(`${this.baseUrl}/${this.endpoint}`)
+  getCharacters = async ({ page }: { page: number }) => {
+    const { results, info } = await this.httpClient.get<ICharacter[]>(`${this.baseUrl}/${this.endpoint}`, { page })
 
-    return results.map((character) => new Character(character))
+    return {
+      results: results.map((character) => new Character(character)),
+      info,
+    }
   }
 
-  getCharacterDetails = (id: number): Promise<ICharacter> => {
+  getCharacterDetails = (id: number) => {
     throw new Error('Method not implemented.')
   }
 }

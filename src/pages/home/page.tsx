@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { HomeViewModel } from '@/modules/home'
 
-import { CharacterCard, Container, Grid, Loading, Text, Title } from '@/components'
+import { CharacterCard, Container, Grid, LinkButton, Loading, Row, Text, Title } from '@/components'
 
 export default function HomePage(viewModel: HomeViewModel.IReturn) {
   const { characters = [], loading } = viewModel
@@ -25,6 +25,14 @@ export default function HomePage(viewModel: HomeViewModel.IReturn) {
             <CharacterCard key={character.id} character={character} />
           ))}
         </Grid>
+
+        {!loading && (
+          <Row className="justify-center mt-5">
+            <LinkButton href="/characters" className="text-white">
+              See all characters
+            </LinkButton>
+          </Row>
+        )}
       </Container>
     </main>
   )
