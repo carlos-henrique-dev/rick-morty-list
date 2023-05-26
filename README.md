@@ -1,5 +1,10 @@
 # Rick and Morty List
 
+This is a simple app that lists all characters from the Rick and Morty series. It uses the [Rick and Morty API](https://rickandmortyapi.com/) to fetch the data.
+
+It loads the firs 20 characters when the page loads, store it in a global state using Zustand and shows the firs 3.
+When the user goes to the `characters` page it shows all the 20 characters and loads more 20 when the user clicks on the `Load more` button.
+
 [See it online](https://rick-morty-list.vercel.app/)
 
 ## Stack
@@ -10,9 +15,20 @@
 - TailwindCSS;
 - Zustand;
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## TODO
 
-## Getting Started
+- [ ] Open modal with character details;
+- [ ] Add tests;
+
+## Screenshots
+
+Here are some screenshots of the app running on different devices:
+
+![Desktop 1](/docs/images/Sizzy-Laptop%20M.png)
+![Mobile 1](/docs/images/Sizzy-Galaxy%20S20.png)
+![Mobile 2](/docs/images/Sizzy-iPhone%2011.png)
+
+## Running locally
 
 First, run the development server:
 
