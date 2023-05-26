@@ -10,7 +10,14 @@ export default class HomeDomain implements Domain.IHomeDomain {
   }
 
   getCharacters = async () => {
-    const { results: characters } = await this.charactersService.getCharacters({ page: 1 })
-    return characters
+    const { results, info } = await this.charactersService.getCharacters({ page: 1 })
+    return { results, info }
+  }
+
+  getNextPageFromURL = (url: string) => {
+    const urlObj = new URL(url)
+    const params = new URLSearchParams(urlObj.search)
+
+    return params.get('page') ? Number(params.get('page')) : null
   }
 }

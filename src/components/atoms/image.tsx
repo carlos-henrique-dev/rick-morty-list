@@ -10,5 +10,5 @@ interface Props extends BaseProps {
 }
 
 export function Image({ src, alt, width, height, ...rest }: Props) {
-  return <NextImage src={src} alt={alt} width={width} height={height} {...rest} />
+  return <NextImage className='w-[150px] h-auto' priority src={src} alt={alt} width={width} height={height} {...rest} />
 }

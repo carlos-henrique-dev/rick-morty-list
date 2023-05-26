@@ -5,28 +5,21 @@ import { Domain } from '../interfaces'
 export default class CharactersDomain implements Domain.ICharactersDomain {
   charactersService: ICharacterService
 
-  private _currentPage = 1
-  private _maxPage = 1
-
   constructor({ charactersService }: Domain.Params) {
     this.charactersService = charactersService
   }
 
-  getCharacters = async () => {
-    const page = this.currentPage + 1
-    const { results: characters, info } = await this.charactersService.getCharacters({ page })
+  getCharacters = async (params: { page: number | null }) => {
+    const { page } = params
+    const { results, info } = await this.charactersService.getCharacters({ page })
 
-    this._maxPage = info.pages
-    this._currentPage += 1
-
-    return characters
+    return { results, info }
   }
 
-  get currentPage(): number {
-    return this._currentPage
-  }
+  getNextPageFromURL = (url: string) => {
+    const urlObj = new URL(url)
+    const params = new URLSearchParams(urlObj.search)
 
-  get maxPages(): number {
-    return this._maxPage
+    return params.get('page') ? Number(params.get('page')) : null
   }
 }

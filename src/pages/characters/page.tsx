@@ -11,6 +11,8 @@ export default function CharactersPage(viewModel: CharactersViewModel.IReturn) {
 
   return (
     <main>
+      <Loading active={loading} />
+
       <Head>
         <title>Characters</title>
       </Head>
@@ -19,8 +21,6 @@ export default function CharactersPage(viewModel: CharactersViewModel.IReturn) {
         <Container>
           <Title className="text-center">Rick and Morty</Title>
         </Container>
-
-        <Loading active={loading} />
 
         <Grid>
           {characters.map((character) => (

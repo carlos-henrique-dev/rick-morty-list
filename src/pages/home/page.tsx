@@ -8,6 +8,8 @@ export default function HomePage(viewModel: HomeViewModel.IReturn) {
 
   return (
     <main>
+      <Loading active={loading} />
+
       <Head>
         <title>Rick and Morty List</title>
       </Head>
@@ -17,8 +19,6 @@ export default function HomePage(viewModel: HomeViewModel.IReturn) {
           <Title className="text-center">Rick and Morty</Title>
           <Text className="font-bold">Character List</Text>
         </Container>
-
-        <Loading active={loading} />
 
         <Grid>
           {characters.map((character) => (

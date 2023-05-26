@@ -1,4 +1,4 @@
-import { ICharacter, ICharacterService } from '@/interfaces'
+import { IApiResponse, ICharacter, ICharacterService } from '@/interfaces'
 
 export namespace Domain {
   export interface Params {
@@ -6,6 +6,7 @@ export namespace Domain {
   }
 
   export interface IHomeDomain {
-    getCharacters(): Promise<Array<ICharacter>>
+    getCharacters(): Promise<IApiResponse<Array<ICharacter>>>
+    getNextPageFromURL(url: string): number | null
   }
 }

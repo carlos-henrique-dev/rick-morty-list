@@ -11,8 +11,10 @@ export class CharacterService implements ICharacterService {
     this.baseUrl = baseUrl
   }
 
-  getCharacters = async ({ page }: { page: number }) => {
-    const { results, info } = await this.httpClient.get<ICharacter[]>(`${this.baseUrl}/${this.endpoint}`, { page })
+  getCharacters = async (params: Record<string, any>) => {
+    const url = `${this.baseUrl}/${this.endpoint}?${new URLSearchParams(params)}`
+
+    const { results, info } = await this.httpClient.get<ICharacter[]>(url)
 
     return {
       results: results.map((character) => new Character(character)),

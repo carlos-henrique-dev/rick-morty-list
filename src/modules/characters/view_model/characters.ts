@@ -5,33 +5,40 @@ import { CharactersViewModel } from '../interfaces'
 export default function useCharactersViewModel(params: CharactersViewModel.IProps): CharactersViewModel.IReturn {
   const { domain, characterStore } = params
 
-  const [loading, setLoading] = useState(true)
   const [endOfList, setEndOfList] = useState(false)
 
-  const { characters, setCharacters } = characterStore
+  const { characters, pagination, loading, setCharacters, setNextPage, setLoading } = characterStore
 
   const getCharacters = async () => {
-    const characters = await domain.getCharacters()
+    let page = null
+    if (characters.length) {
+      page = pagination.next
+    }
 
-    setCharacters(characters)
-    setLoading(false)
+    const { results, info } = await domain.getCharacters({ page })
+
+    setCharacters(results)
+    setNextPage(domain.getNextPageFromURL(info.next))
   }
 
   useEffect(() => {
+    console.log({ pagination, loading, characters })
     if (!characters.length) {
       getCharacters()
     }
+    setLoading(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const getNextPage = async () => {
-    const newList = await domain.getCharacters()
+    const { results, info } = await domain.getCharacters({ page: pagination.next })
 
-    if (domain.currentPage > domain.maxPages) {
+    if (!info.next) {
       setEndOfList(true)
     }
 
-    setCharacters([...characters, ...newList])
+    setNextPage(domain.getNextPageFromURL(info.next))
+    setCharacters([...characters, ...results])
   }
 
   return {

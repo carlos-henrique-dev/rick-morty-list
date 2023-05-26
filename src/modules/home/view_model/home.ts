@@ -6,17 +6,18 @@ export default function useHomeViewModel(params: HomeViewModel.IProps): HomeView
   const { domain, characterStore } = params
 
   const [loading, setLoading] = useState(true)
-  const { characters, setCharacters } = characterStore
+  const { characters, setCharacters, setNextPage } = characterStore
 
   const getCharacters = async () => {
-    const characters = await domain.getCharacters()
+    const { results, info } = await domain.getCharacters()
 
-    setCharacters(characters)
-    setLoading(false)
+    setCharacters(results)
+    setNextPage(domain.getNextPageFromURL(info.next))
   }
 
   useEffect(() => {
     getCharacters()
+    setLoading(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
