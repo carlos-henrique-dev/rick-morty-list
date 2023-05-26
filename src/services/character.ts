@@ -25,4 +25,11 @@ export class CharacterService implements ICharacterService {
   getCharacterDetails = (id: number) => {
     throw new Error('Method not implemented.')
   }
+
+  getNextPageFromURL = (url: string) => {
+    const urlObj = new URL(url)
+    const params = new URLSearchParams(urlObj.search)
+
+    return params.get('page') ? Number(params.get('page')) : null
+  }
 }

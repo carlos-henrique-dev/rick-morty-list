@@ -3,16 +3,16 @@ import { useEffect, useState } from 'react'
 import { HomeViewModel } from '../interfaces'
 
 export default function useHomeViewModel(params: HomeViewModel.IProps): HomeViewModel.IReturn {
-  const { domain, characterStore } = params
+  const { characterService, characterStore } = params
 
   const [loading, setLoading] = useState(true)
   const { characters, setCharacters, setNextPage } = characterStore
 
   const getCharacters = async () => {
-    const { results, info } = await domain.getCharacters()
+    const { results, info } = await characterService.getCharacters({})
 
     setCharacters(results)
-    setNextPage(domain.getNextPageFromURL(info.next))
+    setNextPage(characterService.getNextPageFromURL(info.next))
   }
 
   useEffect(() => {

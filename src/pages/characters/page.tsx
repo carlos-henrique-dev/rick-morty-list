@@ -11,7 +11,7 @@ export default function CharactersPage(viewModel: CharactersViewModel.IReturn) {
 
   return (
     <main>
-      <Loading active={loading} />
+      <Loading active={loading && !characters.length} />
 
       <Head>
         <title>Characters</title>
@@ -30,8 +30,8 @@ export default function CharactersPage(viewModel: CharactersViewModel.IReturn) {
 
         {!endOfList && (
           <Row className="justify-center mt-5">
-            <Button onClick={handleGetNextPage} className="text-white">
-              Load more
+            <Button onClick={handleGetNextPage} className="text-white" disabled={loading}>
+              {loading ? 'Loading...' : 'Load more'}
             </Button>
           </Row>
         )}

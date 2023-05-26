@@ -1,10 +1,8 @@
-import { ICharacter, ICharacterStore } from '@/interfaces'
-
-import { Domain } from './domain'
+import { ICharacter, ICharacterService, ICharacterStore } from '@/interfaces'
 
 export namespace HomeViewModel {
   export interface IProps {
-    domain: Domain.IHomeDomain
+    characterService: ICharacterService
     characterStore: ICharacterStore
   }
 

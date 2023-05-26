@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { CharactersViewModel } from '../interfaces'
 
 export default function useCharactersViewModel(params: CharactersViewModel.IProps): CharactersViewModel.IReturn {
-  const { domain, characterStore } = params
+  const { characterService, characterStore } = params
 
   const [endOfList, setEndOfList] = useState(false)
 
@@ -15,14 +15,13 @@ export default function useCharactersViewModel(params: CharactersViewModel.IProp
       page = pagination.next
     }
 
-    const { results, info } = await domain.getCharacters({ page })
+    const { results, info } = await characterService.getCharacters({ page })
 
     setCharacters(results)
-    setNextPage(domain.getNextPageFromURL(info.next))
+    setNextPage(characterService.getNextPageFromURL(info.next))
   }
 
   useEffect(() => {
-    console.log({ pagination, loading, characters })
     if (!characters.length) {
       getCharacters()
     }
@@ -31,14 +30,17 @@ export default function useCharactersViewModel(params: CharactersViewModel.IProp
   }, [])
 
   const getNextPage = async () => {
-    const { results, info } = await domain.getCharacters({ page: pagination.next })
+    setLoading(true)
+    const { results, info } = await characterService.getCharacters({ page: pagination.next })
 
     if (!info.next) {
       setEndOfList(true)
     }
 
-    setNextPage(domain.getNextPageFromURL(info.next))
+    setNextPage(characterService.getNextPageFromURL(info.next))
     setCharacters([...characters, ...results])
+
+    setLoading(false)
   }
 
   return {
