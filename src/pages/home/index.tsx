@@ -1,8 +1,7 @@
 import { HttpClient } from '@/infra'
 import { CharacterService } from '@/services'
-import { HomeDomain } from './domain'
+import { HomeDomain, useHomeViewModel } from '@/modules/home'
 
-import { useHomeViewModel } from './view_model'
 import HomePage from './page'
 
 const httpClient = new HttpClient()

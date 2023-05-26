@@ -1,10 +1,10 @@
 import { ICharacter } from '@/interfaces'
 
-import { IHomeDomain } from './domain'
+import { Domain } from './domain'
 
 export namespace HomeViewModel {
   export interface IProps {
-    domain: IHomeDomain
+    domain: Domain.IHomeDomain
   }
 
   export interface IReturn {

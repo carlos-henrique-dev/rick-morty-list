@@ -1,10 +1,10 @@
 import Head from 'next/head'
-import { HomeViewModel } from './interfaces'
+import { HomeViewModel } from '@/modules/home'
 
 import { CharacterCard, Container, Grid, Text, Title } from '@/components'
 
 export default function HomePage(viewModel: HomeViewModel.IReturn) {
-  const { characters } = viewModel
+  const { characters = [] } = viewModel
 
   return (
     <main>
