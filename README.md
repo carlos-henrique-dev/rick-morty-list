@@ -24,9 +24,9 @@ When the user goes to the `characters` page it shows all the 20 characters and l
 
 Here are some screenshots of the app running on different devices:
 
-![Desktop 1](/docs/images/Sizzy-Laptop%20M.png)
-![Mobile 1](/docs/images/Sizzy-Galaxy%20S20.png)
-![Mobile 2](/docs/images/Sizzy-iPhone%2011.png)
+![Desktop 1](/docs/images/Sizzy-Laptop-M.png)
+![Mobile 1](/docs/images/Sizzy-Galaxy-S20.png)
+![Mobile 2](/docs/images/Sizzy-iPhone-11.png)
 
 ## Running locally
 
