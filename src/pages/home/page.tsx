@@ -1,22 +1,29 @@
-import Image from 'next/image'
+import Head from 'next/head'
 import { HomeViewModel } from './interfaces'
+
+import { CharacterCard, Container, Grid, Text, Title } from '@/components'
 
 export default function HomePage(viewModel: HomeViewModel.IReturn) {
   const { characters } = viewModel
 
   return (
     <main>
-      <h1>Rick and Morty</h1>
+      <Head>
+        <title>Rick and Morty List</title>
+      </Head>
 
-      <ul>
-        {characters.map((character) => (
-          <li key={character.id}>
-            <Image src={character.image} alt={character.name} width={150} height={150} />
-            <h2>{character.name}</h2>
-            <p>{character.status}</p>
-          </li>
-        ))}
-      </ul>
+      <Container>
+        <Container>
+          <Title className="text-center">Rick and Morty</Title>
+          <Text className="font-bold">Character List</Text>
+        </Container>
+
+        <Grid>
+          {characters.map((character) => (
+            <CharacterCard key={character.id} character={character} />
+          ))}
+        </Grid>
+      </Container>
     </main>
   )
 }

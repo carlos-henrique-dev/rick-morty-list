@@ -7,6 +7,9 @@ module.exports = {
         background: {
           1000: '#272b33',
         },
+        'dark-gray': {
+          500: '#3c3e44',
+        },
       },
     },
   },
